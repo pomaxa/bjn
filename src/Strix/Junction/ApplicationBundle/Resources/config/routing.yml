@@ -1,0 +1,11 @@
+application_form:
+    pattern:  /application/apply
+    defaults: { _controller: StrixJunctionApplicationBundle:Default:index }
+
+junction_index:
+    pattern:  /
+    defaults: { _controller: StrixJunctionApplicationBundle:Default:intro }
+
+junction_about:
+    pattern:  /
+    defaults: { _controller: StrixJunctionApplicationBundle:Default:intro }

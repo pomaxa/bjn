@@ -1,0 +1,17 @@
+strix_junction_application:
+    resource: "@StrixJunctionApplicationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+backend:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /backend
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /backend
+
+backend_root:
+    pattern:    /backend
+    defaults:   { _controller: SonataAdminBundle:Core:dashboard }

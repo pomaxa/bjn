@@ -1,0 +1,128 @@
+<html>
+<head>
+
+    {% stylesheets filter='cssrewrite'
+    '@bootstrap_less'
+    'bundles/strixjunctionapplication/datepicker/css/*'
+    'bundles/pinanoselect2/css/select2.css'
+    'bundles/pinanoselect2/css/select2-bootstrap.css'
+
+
+     %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    {#<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>#}
+    {% javascripts
+    'http://code.jquery.com/jquery-1.10.1.min.js'
+    '@bootstrap_js'
+    '@PinanoSelect2Bundle/Resources/public/js/select2.min.js'
+    '@StrixJunctionApplicationBundle/Resources/public/datepicker/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $(function () {
+            $(".mydatetimepicker").datepicker({viewMode: 2});
+            $("select").select2();
+        });
+    </script>
+
+</head>
+<body style="min-width: 400px">
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">BALTIC JEWISH NETWORK</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        {#<ul class="nav navbar-nav">#}
+            {#<li class="active"><a href="#">Link</a></li>#}
+            {#<li><a href="#">Link</a></li>#}
+            {#<li class="dropdown">#}
+                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
+                {#<ul class="dropdown-menu">#}
+                    {#<li><a href="#">Action</a></li>#}
+                    {#<li><a href="#">Another action</a></li>#}
+                    {#<li><a href="#">Something else here</a></li>#}
+                    {#<li class="divider"></li>#}
+                    {#<li><a href="#">Separated link</a></li>#}
+                    {#<li class="divider"></li>#}
+                    {#<li><a href="#">One more separated link</a></li>#}
+                {#</ul>#}
+            {#</li>#}
+        {#</ul>#}
+        {#<form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>#}
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Social links <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Youtube</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </li>
+            <li><a href="{{ path('application_form') }}">Registration form</a></li>
+            <li><a href="{{ path('junction_about') }}">about us</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">BALTIC JEWISH NETWORK 2014</h1>
+
+        </div>
+    </div>
+<hr>
+<div class="row">
+    <div class="col-sm-6">
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse faucibus fringilla suscipit. Fusce sed placerat eros. Duis vitae tortor feugiat, consequat felis quis, sollicitudin tellus. Duis iaculis bibendum tellus, vel eleifend libero placerat ut. Sed eu erat vel sem auctor ultricies. Quisque varius eleifend dolor ut varius. Cras a blandit dolor, et pulvinar diam. Aliquam id porta augue. Maecenas dictum dignissim hendrerit. Nulla iaculis, sapien accumsan aliquet iaculis, dolor elit mattis nulla, nec mollis enim metus ut ante. Nulla dui ante, volutpat a elit vel, gravida placerat libero. Curabitur consectetur tellus ligula, vel scelerisque est placerat id.
+        </p><p>
+        Vestibulum pulvinar turpis arcu, nec euismod felis fringilla nec. Morbi laoreet eget augue sed lacinia. Fusce eget augue dolor. Donec placerat aliquet porttitor. Aliquam in varius orci, in tristique orci. Praesent mollis placerat luctus. Vestibulum ante leo, accumsan convallis auctor sed, ornare eu arcu.
+        </p><p>
+        Duis id orci tristique, scelerisque nisl at, rhoncus enim. Maecenas dolor orci, porttitor non dictum non, eleifend quis mi. Donec ut nulla nec augue interdum suscipit. Sed id arcu vitae sem lobortis scelerisque. Aenean nec interdum leo. Curabitur dictum magna id volutpat dapibus. Donec lacinia massa a dolor cursus viverra. Nunc ornare vel odio quis commodo. Nam tempor tincidunt commodo. Integer vitae sem nec lorem ornare tempor.
+        </p><p>
+        Mauris congue ullamcorper nunc, sed semper nibh porta vel. Fusce pellentesque leo ut enim suscipit vestibulum. Ut convallis, diam eget venenatis rutrum, nunc mauris lacinia est, id vulputate risus dolor lacinia elit. Aliquam erat volutpat. Aenean ac ultrices nibh. Phasellus varius purus velit. Mauris lorem enim, euismod eu orci vel, pharetra blandit nisi. Cras ac arcu non elit egestas varius ut ut dui. In pharetra sit amet tortor nec porttitor. Vivamus sed iaculis justo. Phasellus sodales porttitor felis quis cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p><p>
+        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Cras ultrices, magna ac suscipit commodo, eros ante feugiat neque, sit amet adipiscing turpis neque sed sem. Vivamus pretium condimentum dolor id vestibulum. Maecenas viverra elementum suscipit. Donec sollicitudin eu nulla eu cursus. Duis tincidunt pharetra urna id auctor. Nullam vestibulum convallis erat ut suscipit. Pellentesque rhoncus, mi id congue iaculis, turpis erat laoreet massa, ut aliquet ipsum metus ac nulla. Nullam semper, libero non luctus tempor, est orci tempus justo, ac malesuada justo lectus eget risus. Aliquam feugiat nibh eu lectus euismod, sed dignissim risus iaculis. Nulla eros magna, lacinia nec convallis eget, eleifend at justo. Suspendisse potenti. Duis consectetur vehicula sapien, in dictum lacus suscipit nec. Nunc ornare fermentum gravida.
+        </p>
+            {#{% form_theme form 'StrixJunctionApplicationBundle:Form:bootstrap.html.twig' %}#}
+            {#{{ form(form) }}#}
+    </div>
+    <div class="col-sm-6">
+        <div class="alert alert-info">
+            Please fill in the <a style="text-decoration: underline" href="{{ path('application_form') }}">form</a> to register for Baltic Jewish Network 2014 in Jurmala, Latvia. If you are selected to participate, we will get in touch with you shortly to continue the registration process. Please note that the spaces are limited.
+        </div>
+
+    </div>
+</div>
+<hr>
+<h2>THANK FOR OUR SPONSOR!</h2>
+
+<h3>JOIN US TODAY!</h3>
+
+</div>
+</body>
+
+</html>

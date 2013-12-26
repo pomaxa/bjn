@@ -1,0 +1,12 @@
+parameters:
+#    strix_junction_application.example.class: Strix\Junction\ApplicationBundle\Example
+
+services:
+#    strix_junction_application.example:
+#        class: %strix_junction_application.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    strix.junction.applications_admin:
+        class: Strix\Junction\ApplicationBundle\Admin\ApplicationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Applications", label: "Applications" }
+        arguments: [ null, Strix\Junction\ApplicationBundle\Entity\Application, null ]
