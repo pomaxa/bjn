@@ -9,3 +9,7 @@ junction_index:
 junction_about:
     pattern:  /
     defaults: { _controller: StrixJunctionApplicationBundle:Default:intro }
+
+crm_form:
+    pattern:  /crm
+    defaults: { _controller: StrixJunctionApplicationBundle:Default:dba }

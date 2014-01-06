@@ -32,14 +32,16 @@ twig:
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
-    use_controller: true
+    use_controller: false
     bundles:        [ 'StrixJunctionApplicationBundle' ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
         lessphp:
             apply_to: "\.less$"
-            file:   %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            formatter: "compressed"
+            preserve_comments: false
+#            file:   %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
     assets:
         bootstrap_js:
             inputs:
