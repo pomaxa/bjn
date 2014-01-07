@@ -182,6 +182,11 @@ class Application
      */
     private $namePrefix;
 
+    /**
+     * @var string
+     * @ORM\Column(name="transportation", type="string", length=50, nullable=true)
+     */
+    private $transportation;
 
     /**
      * Get id
@@ -375,29 +380,6 @@ class Application
     public function getDateOfBirth()
     {
         return $this->dateOfBirth;
-    }
-
-    /**
-     * Set facebookProfile
-     *
-     * @param string $facebookProfile
-     * @return Application
-     */
-    public function setfacebookProfile($facebookProfile)
-    {
-        $this->facebookProfile = $facebookProfile;
-
-        return $this;
-    }
-
-    /**
-     * Get facebookProfile
-     *
-     * @return string 
-     */
-    public function getfacebookProfile()
-    {
-        return $this->facebookProfile;
     }
 
     /**
@@ -714,7 +696,7 @@ class Application
             'friend' => 'friend',
             'advert' => 'advert',
             'organization' => 'organization',
-            'internet' => 'Internet',
+            'internet' => 'internet',
         );
     }
 
@@ -725,5 +707,57 @@ class Application
             'shared' => 'shared',
             'couple' => 'couple'
         );
+    }
+
+    /**
+     * Set facebookProfile
+     *
+     * @param string $facebookProfile
+     * @return Application
+     */
+    public function setFacebookProfile($facebookProfile)
+    {
+        $this->facebookProfile = $facebookProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookProfile
+     *
+     * @return string 
+     */
+    public function getFacebookProfile()
+    {
+        return $this->facebookProfile;
+    }
+
+    /**
+     * Set applicationComments
+     *
+     * @param string $applicationComments
+     * @return Application
+     */
+    public function setApplicationComments($applicationComments)
+    {
+        $this->applicationComments = $applicationComments;
+
+        return $this;
+    }
+
+    /**
+     * Get applicationComments
+     *
+     * @return string 
+     */
+    public function getApplicationComments()
+    {
+        return $this->applicationComments;
+    }
+
+    public function __construct()
+    {
+        $this->applicationStatus = 'NEW';
+        $this->applicationComments = '';
     }
 }

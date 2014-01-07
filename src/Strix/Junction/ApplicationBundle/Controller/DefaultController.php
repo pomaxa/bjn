@@ -27,25 +27,38 @@ class DefaultController extends Controller
         return $this->render('StrixJunctionApplicationBundle:Crm:form.html.twig', array('leadId' => $leadId));
     }
 
-
     public function indexAction()
+    {
+        return $this->render('StrixJunctionApplicationBundle:Default:main.html.twig');
+    }
+    public function aboutAction()
+    {
+        return $this->render('StrixJunctionApplicationBundle:Default:about.html.twig');
+    }
+
+    public function successSubmitPageAction() {
+        return $this->render('StrixJunctionApplicationBundle:Default:success_submit_page.html.twig');
+    }
+    public function applicationFormAction()
     {
 
         $application = new Application();
 
         $form = $this->createFormBuilder($application)
 
-            ->add('namePrefix', 'choice', array('choices' => array('Ms.', 'Mrs.', 'Mr.')))
-            ->add('firstName', null, array('label' => 'first name'))
-            ->add('lastName', null, array('label' => 'last name'))
-            ->add('gender', 'choice', array('choices' => Application::getGenders(), 'empty_value' => $this->trans('Choose an option'), 'label' => $this->trans('gender')))
-            ->add('email', null, array('label' => 'email'))
-            ->add('cellPhone', null, array('label' => 'cell phone'))
+//            ->add('namePrefix', 'choice', array('choices' => array('Ms.', 'Mrs.', 'Mr.')))
+            ->add('firstName', null, array('label' => $this->trans('first name')))
+            ->add('lastName', null, array('label' => $this->trans('last name')))
+
+            ->add('gender', 'choice', array('choices' => array_map(array(&$this, 'trans'), Application::getGenders()), 'empty_value' => $this->trans('Choose an option'), 'label' => $this->trans('gender')))
+
+            ->add('email', null, array('label' => $this->trans('email')))
+            ->add('cellPhone', null, array('label' => $this->trans('phone number'), 'attr' => array('placeholder' => '+371 2223344')))
             ->add('countryOfLiving', 'country', array('empty_value' => $this->trans('Choose an option'), 'label' => $this->trans('country of living')))
             ->add('dateOfBirth', 'date', array('widget' => 'single_text', 'label' => $this->trans('date of birth')))
-            ->add('facebookProfile', 'url',array('label' => 'facebook profile'))
-            ->add('linkedinProfile', 'url', array('label' => 'linkedin profile'))
-            ->add('knowFrom', 'choice', array('choices' => Application::knowFromSuggestions(), 'label' => $this->trans('How did you hear about Baltic Jewish Network?')) )
+            ->add('facebookProfile', 'url',array('label' => $this->trans('facebook profile')))
+            ->add('linkedinProfile', 'url', array('label' => $this->trans('linkedin profile')))
+            ->add('knowFrom', 'choice', array('choices' => array_map(array(&$this, 'trans'), Application::knowFromSuggestions()), 'label' => $this->trans('How did you hear about Baltic Jewish Network?')) )
             ->add('languages', 'language', array('multiple' => true, 'label' => $this->trans('What languages do you speak?')))
 //            ->add('languages', 'choice', array('multiple' => true, 'choices' => array(
 //                'latvian' => 'Latviesu',
@@ -60,11 +73,19 @@ class DefaultController extends Controller
             ->add('wannaBePartner', null, array('label' => $this->trans('Would you like to be a Baltic Jewish Network Presenter? (business idea, field of expertise, company?)*')))
             ->add('motivation', 'textarea', array('label' => $this->trans('Motivation to participate in Baltic Jewish Network 2014?')))
             ->add('dietaryRequirements', 'textarea', array('label' => $this->trans('Kosher style food will be served (vegetarian + fish). Please specify for any other dietary requirements .')))
-            ->add('accommodation', 'choice', array('choices' => Application::accommodationsList(), 'label' => $this->trans('Accommodation Preference')))
+            ->add('accommodation', 'choice', array('choices' => array_map(array(&$this, 'trans'), Application::accommodationsList()), 'label' => $this->trans('Accommodation Preference')))
             ->add('accommodationComments', 'textarea', array('label' => $this->trans('Remarks & Comments for accommodation')))
-            ->add('apply', 'submit')
+            ->add('transportation', 'choice', array('choices' => array_map(array(&$this, 'trans'), Application::getTransportationTypes()), 'label' => $this->trans('Transportation')))
+            ->add('apply', 'submit', array('attr' => array('class' => 'btn btn-primary btn-lg btn-block', 'value' => $this->trans('Apply'))))
             ->getForm();
         ;
+
+        $form->handleRequest($this->getRequest());
+
+        if($form->isValid()) {
+            return $this->redirect($this->generateUrl('success_submit_page'));
+        }
+
         return $this->render('StrixJunctionApplicationBundle:Default:index.html.twig', array('form' => $form->createView()));
     }
 }

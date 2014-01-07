@@ -1,15 +1,26 @@
 application_form:
-    pattern:  /application/apply
-    defaults: { _controller: StrixJunctionApplicationBundle:Default:index }
+    pattern:  /{_locale}/application/apply
+    defaults: { _controller: StrixJunctionApplicationBundle:Default:applicationForm, _locale: en }
+    requirements:
+        _locale: en|ru
 
 junction_index:
-    pattern:  /
-    defaults: { _controller: StrixJunctionApplicationBundle:Default:intro }
+    pattern:  /{_locale}
+    defaults: { _controller: StrixJunctionApplicationBundle:Default:index, _locale: en }
+    requirements:
+        _locale: en|ru
+
+success_submit_page:
+    pattern:  /{_locale}/application/submited
+    defaults: { _controller: StrixJunctionApplicationBundle:Default:successSubmitPage, _locale: en }
+    requirements:
+        _locale: en|ru
 
 junction_about:
-    pattern:  /
-    defaults: { _controller: StrixJunctionApplicationBundle:Default:intro }
-
+    pattern:  /{_locale}/about
+    defaults: { _controller: StrixJunctionApplicationBundle:Default:about, _locale: en }
+    requirements:
+        _locale: en|ru
 crm_form:
     pattern:  /crm
     defaults: { _controller: StrixJunctionApplicationBundle:Default:dba }

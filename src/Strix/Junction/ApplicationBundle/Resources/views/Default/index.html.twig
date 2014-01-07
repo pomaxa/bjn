@@ -1,12 +1,12 @@
 <html>
 <head>
 
-    {% stylesheets filter='cssrewrite'
+    {% stylesheets filter='cssrewrite' debug=true
     'bundles/strixjunctionapplication/datepicker/css/*'
     'bundles/strixjunctionapplication/css/*'
     'bundles/pinanoselect2/css/select2.css'
-    '@bootstrap_less'
     'bundles/pinanoselect2/css/select2-bootstrap.css'
+    '@bootstrap_less'
 
 
      %}
@@ -40,43 +40,32 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">BALTIC JEWISH NETWORK</a>
+        <a class="navbar-brand" href="{{ path('junction_index') }}">BALTIC JEWISH NETWORK</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        {#<ul class="nav navbar-nav">#}
-            {#<li class="active"><a href="#">Link</a></li>#}
-            {#<li><a href="#">Link</a></li>#}
-            {#<li class="dropdown">#}
-                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
-                {#<ul class="dropdown-menu">#}
-                    {#<li><a href="#">Action</a></li>#}
-                    {#<li><a href="#">Another action</a></li>#}
-                    {#<li><a href="#">Something else here</a></li>#}
+
+        <ul class="nav navbar-nav navbar-right">
+            <li {% if app.request.attributes.get('_route') =='junction_about' %}class="active"{% endif %}><a href="{{ path('junction_about') }}">About</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">We on social networks <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Youtube</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
                     {#<li class="divider"></li>#}
                     {#<li><a href="#">Separated link</a></li>#}
-                    {#<li class="divider"></li>#}
-                    {#<li><a href="#">One more separated link</a></li>#}
-                {#</ul>#}
-            {#</li>#}
-        {#</ul>#}
-        {#<form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>#}
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
+                </ul>
+            </li>
+
+
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ app.request.attributes.get('_locale')|trans  }}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
+                    <li {% if app.request.attributes.get('_locale') == 'ru' %} class="active" {% endif %}><a href="{{ path(app.request.attributes.get('_route'), {'_locale': 'ru'}) }}">Русский</a></li>
+                    <li {% if app.request.attributes.get('_locale') == 'en' %} class="active" {% endif %}><a href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}">English</a></li>
                 </ul>
             </li>
         </ul>
@@ -86,7 +75,7 @@
 
 
 <div class="container">
-
+{% block content %}
     <div class="row">
         <div class="col-sm-12">
             <h1>REGISTRATION FOR BALTIC JEWISH NETWORK 2014</h1>
@@ -102,17 +91,39 @@
     </div>
     <div class="col-sm-6">
         <div class="alert alert-info">
-            Please fill in the form on the left to register for Baltic Jewish Network 2014 in Jurmala, Latvia. If you are selected to participate, we will get in touch with you shortly to continue the registration process. Please note that the spaces are limited.
+            {% trans %}form_comment_text{% endtrans %}
         </div>
 
     </div>
 </div>
-<hr>
-<h2>THANK YOU FOR SUBSCRIBING!</h2>
 
-<h3>WE WILL KEEP YOU POSTED!</h3>
-
+{% endblock content %}
 </div>
+
+<footer>
+    <nav class="bs-navbar-bottom-example navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('junction_index') }}">&copy; Baltic Jewish Network</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#about">Sponsor link 1</a></li>
+                    <li><a href="#services">Sponsor link 2</a></li>
+                    <li><a href="#contact">And one more sponsor</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+</footer>
 </body>
 
 </html>

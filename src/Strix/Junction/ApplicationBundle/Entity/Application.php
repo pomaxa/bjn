@@ -182,6 +182,11 @@ class Application
      */
     private $namePrefix;
 
+    /**
+     * @var string
+     * @ORM\Column(name="transportation", type="string", length=50, nullable=true)
+     */
+    private $transportation;
 
     /**
      * Get id
@@ -691,7 +696,7 @@ class Application
             'friend' => 'friend',
             'advert' => 'advert',
             'organization' => 'organization',
-            'internet' => 'Internet',
+            'internet' => 'internet',
         );
     }
 
@@ -754,5 +759,36 @@ class Application
     {
         $this->applicationStatus = 'NEW';
         $this->applicationComments = '';
+    }
+
+    /**
+     * Set transportation
+     *
+     * @param string $transportation
+     * @return Application
+     */
+    public function setTransportation($transportation)
+    {
+        $this->transportation = $transportation;
+
+        return $this;
+    }
+
+    /**
+     * Get transportation
+     *
+     * @return string 
+     */
+    public function getTransportation()
+    {
+        return $this->transportation;
+    }
+
+    public static function getTransportationTypes()
+    {
+        return array(
+            'bus' => 'Bus',
+            'car' => 'Car'
+        );
     }
 }
