@@ -33,7 +33,16 @@ class DefaultController extends Controller
     }
     public function aboutAction()
     {
-        return $this->render('StrixJunctionApplicationBundle:Default:about.html.twig');
+
+        $pageTitle = 'About JBN';
+        $pageContent = 'About text';
+
+        return $this->render('StrixJunctionApplicationBundle:Default:about.html.twig',
+            array(
+                'pageTitle' => $pageTitle,
+                'pageContent' => $pageContent
+            )
+        );
     }
 
     public function successSubmitPageAction() {
@@ -70,11 +79,11 @@ class DefaultController extends Controller
             ->add('fieldOfWork', 'textarea', array('label' => $this->trans('field of work')))
             ->add('companyName', 'text', array('label'=> $this->trans('company_name')))
             ->add('position', 'text', array('label' => $this->trans('position in company')))
-            ->add('wannaBePartner', null, array('label' => $this->trans('Would you like to be a Baltic Jewish Network Presenter? (business idea, field of expertise, company?)*')))
+            ->add('wannaBePartner', null, array('required'=>false,  'label' => $this->trans('Would you like to be a Baltic Jewish Network Presenter? (business idea, field of expertise, company?)')))
             ->add('motivation', 'textarea', array('label' => $this->trans('Motivation to participate in Baltic Jewish Network 2014?')))
             ->add('dietaryRequirements', 'textarea', array('label' => $this->trans('Kosher style food will be served (vegetarian + fish). Please specify for any other dietary requirements .')))
             ->add('accommodation', 'choice', array('choices' => array_map(array(&$this, 'trans'), Application::accommodationsList()), 'label' => $this->trans('Accommodation Preference')))
-            ->add('accommodationComments', 'textarea', array('label' => $this->trans('Remarks & Comments for accommodation')))
+            ->add('accommodationComments', 'textarea', array('required' => false, 'label' => $this->trans('Remarks & Comments for accommodation')))
             ->add('transportation', 'choice', array('choices' => array_map(array(&$this, 'trans'), Application::getTransportationTypes()), 'label' => $this->trans('Transportation')))
             ->add('apply', 'submit', array('attr' => array('class' => 'btn btn-primary btn-lg btn-block', 'value' => $this->trans('Apply'))))
             ->getForm();
@@ -83,6 +92,12 @@ class DefaultController extends Controller
         $form->handleRequest($this->getRequest());
 
         if($form->isValid()) {
+
+            $newApplication = $form->getData();
+
+            $this->getDoctrine()->getManager()->persist($newApplication);
+            $this->getDoctrine()->getManager()->flush();
+
             return $this->redirect($this->generateUrl('success_submit_page'));
         }
 

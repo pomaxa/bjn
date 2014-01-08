@@ -7,8 +7,6 @@
     'bundles/pinanoselect2/css/select2.css'
     'bundles/pinanoselect2/css/select2-bootstrap.css'
     '@bootstrap_less'
-
-
      %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
     {% endstylesheets %}
@@ -22,7 +20,7 @@
     {% endjavascripts %}
     <script>
         $(function () {
-            $(".mydatetimepicker").datepicker({viewMode: 2});
+            $(".mydatetimepicker").datepicker({viewMode: 2, format: 'yyyy-mm-dd'});
             $("select").select2();
         });
     </script>
@@ -78,7 +76,7 @@
 {% block content %}
     <div class="row">
         <div class="col-sm-12">
-            <h1>REGISTRATION FOR BALTIC JEWISH NETWORK 2014</h1>
+            <h1>{% trans %}REGISTRATION FOR BALTIC JEWISH NETWORK 2014{% endtrans %}</h1>
 
         </div>
     </div>
