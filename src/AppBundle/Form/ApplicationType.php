@@ -22,13 +22,19 @@ class ApplicationType extends AbstractType
             )))
             ->add('firstName')
             ->add('lastName')
-            ->add('gender', 'choice', array('choices' => array('male'=>'Male', 'female'=>'Female', 'other' => 'Other')))
+            ->add('gender', 'choice', array(
+                'choices' => array(
+                    'other' => 'Other',
+                    'male'=>'Male',
+                    'female'=>'Female',
+                )
+            ))
             ->add('email', 'email', array('label' => 'Email'))
             ->add('cellPhone')
-            ->add('countryOfLiving')
+            ->add('countryOfLiving', null, array('required'    => false,))
             ->add('dob', 'birthday', array('label' => 'Date of Birth'))
-            ->add('facebookProfile')
-            ->add('linkedinProfile')
+            ->add('facebookProfile', null, array('required'    => false,))
+            ->add('linkedinProfile', null, array('required'    => false,))
             ->add('knowFrom', 'choice', array('label' => 'Know about event from:', 'choices'=> array(
                 'friends',
                 'facebook',
@@ -46,16 +52,16 @@ class ApplicationType extends AbstractType
                 'Italian',
                 'Ukrainian'
             )))
-            ->add('fieldOfWork')
-            ->add('companyName')
-            ->add('position')
-            ->add('wannaBePartner')
-            ->add('motivation')
-            ->add('dietaryRequirements')
-            ->add('accommodation')
-            ->add('accommodationComments')
-            ->add('applicationStatus')
-            ->add('applicationComments')
+            ->add('fieldOfWork', null, array('required'    => false,))
+            ->add('companyName', null, array('required'    => false,))
+            ->add('position', null, array('required'    => false,))
+            ->add('wannaBePartner', null, array('required'    => false,))
+            ->add('motivation', null, array('required'    => false,))
+            ->add('dietaryRequirements', null, array('required'    => false,))
+            ->add('accommodation', null, array('required'    => false,))
+            ->add('accommodationComments', null, array('required'    => false,))
+//            ->add('applicationStatus', null, array('required'    => false,))
+//            ->add('applicationComments', null, array('required'    => false,))
             ->add('transportation', 'choice' , array('choices' => array('Own car', 'By bus')))
         ;
     }

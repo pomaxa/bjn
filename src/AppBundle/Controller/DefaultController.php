@@ -16,10 +16,16 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        $regApplicationForm = $this->createForm(new ApplicationType(), new Application());
+        $regApplicationForm->add('submit', 'submit', array(
+            'label' => 'Attempt to register',
+            'attr'  => array('class' => 'btn btn-default btn-block')
         ));
+        // replace this example code with whatever you need
+        return $this->render(
+            'default/index.html.twig',
+            array('form' => $regApplicationForm->createView())
+        );
     }
 
     /**
@@ -31,7 +37,7 @@ class DefaultController extends Controller
         $regApplicationForm = $this->createForm(new ApplicationType(), new Application());
         $regApplicationForm->add('submit', 'submit', array(
             'label' => 'Create',
-            'attr'  => array('class' => 'btn btn-default pull-right')
+            'attr'  => array('class' => 'btn btn-default btn-block')
         ));
 //        var_dump($regApplication);exit;
         return $this->render('default/application.html.twig', array('form' => $regApplicationForm->createView()));
