@@ -29,6 +29,19 @@
         <div class="row marketing">
             <div class="col-lg-6">
                 <h4>Application form</h4>
+
+
+                {% if app.session.flashbag.has('success') %}
+                    <div id="flashmessage" class="flash-notice">
+                        {{ dump(app.session.flashbag.get('success')) }}
+                    </div>
+                {% endif %}
+                {% if app.session.flashbag.has('error') %}
+                    <div id="flashmessage" class="flash-notice">
+                        {{ dump(app.session.flashbag.get('error')) }}
+                    </div>
+                {% endif %}
+
                 {% form_theme form 'bootstrap_3_layout.html.twig' %}
                 {{ form_start(form, {'attr': {'class': 'my-form-class'} }) }}
                 {{ form_widget(form) }}

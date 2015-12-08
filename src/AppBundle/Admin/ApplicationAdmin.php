@@ -49,11 +49,11 @@ class ApplicationAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
+            ->addIdentifier('id')
             ->add('firstName')
             ->add('lastName')
             ->add('gender')
-            ->add('email')
+            ->addIdentifier('email')
             ->add('cellPhone')
             ->add('countryOfLiving')
             ->add('dob')

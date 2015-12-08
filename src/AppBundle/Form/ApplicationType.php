@@ -63,6 +63,7 @@ class ApplicationType extends AbstractType
 //            ->add('applicationStatus', null, array('required'    => false,))
 //            ->add('applicationComments', null, array('required'    => false,))
             ->add('transportation', 'choice' , array('choices' => array('Own car', 'By bus')))
+            ->add('uploaded_image', 'file', array('required' => false))
         ;
     }
     

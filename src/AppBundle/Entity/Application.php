@@ -184,6 +184,26 @@ class Application
 
 
     /**
+     * @var
+     * @ORM\Column(name="uploaded_image", type="string", length=50)
+     */
+    private $uploadedImage;
+
+
+    const STATUS_NEW = 'new';
+    const STATUS_APPROVED = 'approved';
+    const STATUS__REJECTED = 'rejected';
+
+    protected function getStatuses()
+    {
+        return array(
+            'new' => 'New',
+            'approved' => 'Approved',
+            'rejected' => 'Rejected'
+        );
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -744,5 +764,28 @@ class Application
     {
         return $this->transportation;
     }
-}
 
+    /**
+     * Set uploadedImage
+     *
+     * @param string $uploadedImage
+     *
+     * @return Application
+     */
+    public function setUploadedImage($uploadedImage)
+    {
+        $this->uploadedImage = $uploadedImage;
+
+        return $this;
+    }
+
+    /**
+     * Get uploadedImage
+     *
+     * @return string
+     */
+    public function getUploadedImage()
+    {
+        return $this->uploadedImage;
+    }
+}
