@@ -25,23 +25,27 @@ class ApplicationType extends AbstractType
             ->add('gender', 'choice', array(
                 'choices' => array(
                     'other' => 'Other',
-                    'male'=>'Male',
-                    'female'=>'Female',
+                    'male' => 'Male',
+                    'female' => 'Female',
                 )
             ))
             ->add('email', 'email', array('label' => 'Email'))
             ->add('cellPhone')
-            ->add('countryOfLiving', null, array('required'    => false,))
+            ->add('countryOfLiving', null, array('required' => false,))
             ->add('dob', 'birthday', array('label' => 'Date of Birth'))
-            ->add('facebookProfile', null, array('required'    => false,))
-            ->add('linkedinProfile', null, array('required'    => false,))
-            ->add('knowFrom', 'choice', array('label' => 'Know about event from:', 'choices'=> array(
-                'friends',
-                'facebook',
-                'family',
-                'synagogue',
-                'Other',
-            )))
+            ->add('facebookProfile', null, array('required' => false,))
+            ->add('linkedinProfile', null, array('required' => false,))
+            ->add('knowFrom', 'choice', array(
+                'label' => 'How did you hear about Baltic Jewish Network',
+                'choices' => array(
+                    'community',
+                    'friends',
+                    'facebook',
+                    'family',
+                    'synagogue',
+                    'Other',
+                )
+            ))
             ->add('languages', 'choice', array('multiple' => true, 'choices' => array(
                 'Русский',
                 'English',
@@ -52,21 +56,26 @@ class ApplicationType extends AbstractType
                 'Italian',
                 'Ukrainian'
             )))
-            ->add('fieldOfWork', null, array('required'    => false,))
-            ->add('companyName', null, array('required'    => false,))
-            ->add('position', null, array('required'    => false,))
-            ->add('wannaBePartner', null, array('required'    => false,))
-            ->add('motivation', null, array('required'    => false,))
-            ->add('dietaryRequirements', null, array('required'    => false,))
-            ->add('accommodation', null, array('required'    => false,))
-            ->add('accommodationComments', null, array('required'    => false,))
+            ->add('fieldOfWork', null, array('required' => false,))
+            ->add('companyName', null, array('required' => false,))
+            ->add('position', null, array('required' => false,))
+            ->add('wannaBePartner', null, array('required' => false, 'label' => 'Wanna be BJN partner'))
+            ->add('motivation', null, array('required' => false, 'label' => 'Motivation to participate in Baltic Jewish Network Weekend 2016?'))
+            ->add('dietaryRequirements', null, array('required' => false, 'label' => 'Dietary requirements (kosher style food will be served. Please specify for any other dietary requirements)'))
+            ->add('accommodation', 'choice', array('required' => false, 'choices' => [
+                'single'=>'Single (additional fee for single accommodation will be required)',
+                'couple'=>'Couple',
+                'shared'=>'Shared'
+            ]))
+            ->add('accommodationComments', null, array('required' => false, 'label' => 'Remarks & Comments for accommodation'))
 //            ->add('applicationStatus', null, array('required'    => false,))
 //            ->add('applicationComments', null, array('required'    => false,))
-            ->add('transportation', 'choice' , array('choices' => array('Own car', 'By bus')))
-            ->add('uploaded_image', 'file', array('required' => false))
-        ;
+            ->add('transportation', 'choice', array('choices' => array('Own car', 'By bus')))
+            ->add('uploaded_image', 'file', array('required' => false,
+                'label' => 'In order to create our common network please upload your picture'
+                ));
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
