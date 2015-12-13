@@ -129,28 +129,28 @@ class Application
     /**
      * @var string
      *
-     * @ORM\Column(name="motivation", type="text")
+     * @ORM\Column(name="motivation", type="text", nullable=true)
      */
     private $motivation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="dietaryRequirements", type="text")
+     * @ORM\Column(name="dietaryRequirements", type="text", nullable=true)
      */
     private $dietaryRequirements;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="accommodation", type="string", length=255)
+     * @ORM\Column(name="accommodation", type="string", length=255, nullable=true)
      */
     private $accommodation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="accommodationComments", type="text")
+     * @ORM\Column(name="accommodationComments", type="text", nullable=true)
      */
     private $accommodationComments;
 
@@ -164,28 +164,28 @@ class Application
     /**
      * @var string
      *
-     * @ORM\Column(name="applicationComments", type="text")
+     * @ORM\Column(name="applicationComments", type="text", nullable=true)
      */
     private $applicationComments;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="namePrefix", type="string", length=10)
+     * @ORM\Column(name="namePrefix", type="string", length=10, nullable=true)
      */
     private $namePrefix;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="transportation", type="string", length=50)
+     * @ORM\Column(name="transportation", type="string", length=50, nullable=true)
      */
     private $transportation;
 
 
     /**
      * @var
-     * @ORM\Column(name="uploaded_image", type="string", length=50)
+     * @ORM\Column(name="uploaded_image", type="string", length=50, nullable=true)
      */
     private $uploadedImage;
 
@@ -194,7 +194,12 @@ class Application
     const STATUS_APPROVED = 'approved';
     const STATUS__REJECTED = 'rejected';
 
-    protected function getStatuses()
+    public function __construct()
+    {
+        $this->applicationStatus = self::STATUS_NEW;
+    }
+
+    public static function getStatuses()
     {
         return array(
             'new' => 'New',

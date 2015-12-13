@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Application;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -50,10 +51,11 @@ class ApplicationAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->addIdentifier('email')
+            ->add('status')
             ->add('firstName')
             ->add('lastName')
             ->add('gender')
-            ->addIdentifier('email')
             ->add('cellPhone')
             ->add('countryOfLiving')
             ->add('dob')
@@ -89,10 +91,16 @@ class ApplicationAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
+            ->add('applicationStatus', 'choice', ['choices' => Application::getStatuses()])
             ->add('firstName')
             ->add('lastName')
-            ->add('gender')
+            ->add('gender', 'choice', array(
+                'choices' => array(
+                    'other' => 'Other',
+                    'male' => 'Male',
+                    'female' => 'Female',
+                )
+            ))
             ->add('email')
             ->add('cellPhone')
             ->add('countryOfLiving')
@@ -109,7 +117,6 @@ class ApplicationAdmin extends Admin
             ->add('dietaryRequirements')
             ->add('accommodation')
             ->add('accommodationComments')
-            ->add('applicationStatus')
             ->add('applicationComments')
             ->add('namePrefix')
             ->add('transportation')

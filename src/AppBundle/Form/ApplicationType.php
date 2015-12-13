@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -77,7 +78,7 @@ class ApplicationType extends AbstractType
 //            ->add('applicationStatus', null, array('required'    => false,))
 //            ->add('applicationComments', null, array('required'    => false,))
             ->add('transportation', 'choice', array('choices' => array('Own car', 'By bus')))
-            ->add('uploaded_image', 'file', array('required' => false,
+            ->add('uploadedImage', 'file', array('required' => false,
                 'label' => 'In order to create our common network please upload your picture'
                 ));
     }
