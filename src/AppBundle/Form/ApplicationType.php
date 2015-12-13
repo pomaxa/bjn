@@ -36,6 +36,7 @@ class ApplicationType extends AbstractType
             ->add('facebookProfile', null, array('required' => false,))
             ->add('linkedinProfile', null, array('required' => false,))
             ->add('knowFrom', 'choice', array(
+                'placeholder' => 'Please select one option',
                 'label' => 'How did you hear about Baltic Jewish Network',
                 'choices' => array(
                     'community',
@@ -46,7 +47,9 @@ class ApplicationType extends AbstractType
                     'Other',
                 )
             ))
-            ->add('languages', 'choice', array('multiple' => true, 'choices' => array(
+            ->add('languages', 'choice', array('multiple' => true,
+                'placeholder' => 'Please select languages you know',
+                'choices' => array(
                 'Русский',
                 'English',
                 'Estonian',
@@ -62,7 +65,10 @@ class ApplicationType extends AbstractType
             ->add('wannaBePartner', null, array('required' => false, 'label' => 'Wanna be BJN partner'))
             ->add('motivation', null, array('required' => false, 'label' => 'Motivation to participate in Baltic Jewish Network Weekend 2016?'))
             ->add('dietaryRequirements', null, array('required' => false, 'label' => 'Dietary requirements (kosher style food will be served. Please specify for any other dietary requirements)'))
-            ->add('accommodation', 'choice', array('required' => false, 'choices' => [
+            ->add('accommodation', 'choice', array('required' => false,
+
+                'placeholder' => 'Select preferred option or skip.',
+                'choices' => [
                 'single'=>'Single (additional fee for single accommodation will be required)',
                 'couple'=>'Couple',
                 'shared'=>'Shared'
