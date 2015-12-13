@@ -33,12 +33,12 @@
 
                 {% if app.session.flashbag.has('success') %}
                     <div id="flashmessage" class="flash-notice">
-                        {{ dump(app.session.flashbag.get('success')) }}
+                        {{ app.session.flashbag.get('success') }}
                     </div>
                 {% endif %}
                 {% if app.session.flashbag.has('error') %}
                     <div id="flashmessage" class="flash-notice">
-                        {{ dump(app.session.flashbag.get('error')) }}
+                        {{ app.session.flashbag.get('error') }}
                     </div>
                 {% endif %}
 
