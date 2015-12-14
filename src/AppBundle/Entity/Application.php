@@ -73,14 +73,14 @@ class Application
     /**
      * @var string
      *
-     * @ORM\Column(name="facebookProfile", type="string", length=255)
+     * @ORM\Column(name="facebookProfile", type="string", length=255, nullable=true)
      */
     private $facebookProfile;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="linkedinProfile", type="string", length=255)
+     * @ORM\Column(name="linkedinProfile", type="string", length=255, nullable=true)
      */
     private $linkedinProfile;
 
@@ -115,7 +115,7 @@ class Application
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255)
+     * @ORM\Column(name="position", type="string", length=255, nullable=true)
      */
     private $position;
 
@@ -185,7 +185,7 @@ class Application
 
     /**
      * @var
-     * @ORM\Column(name="uploaded_image", type="string", length=50, nullable=true)
+     * @ORM\Column(name="uploaded_image", type="string", length=255, nullable=true)
      */
     private $uploadedImage;
 
