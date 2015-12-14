@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>REGISTRATION FOR BALTIC JEWISH NETWORK WEEKEND 2016</h1>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+    <div class="col-sm-12">
+
+        {% for jew in applications %}
+
+            <div class="media">
+                <div class="media-left">
+                    <a href="{{ asset(jew.uploadedImage) }}">
+                        <img class="media-object" src="{{ asset('uploads/applications/'~jew.id~'.jpg') }}" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ jew.firstName }} {{ jew.lastName }}</h4>
+                    {{ jew.position }} : {{ jew.fieldOfWork }}
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    </div>
+
+    </div>
+
+
+{% endblock body %}

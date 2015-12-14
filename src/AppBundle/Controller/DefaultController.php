@@ -18,6 +18,9 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+
+        return $this->registrationAction($request);
+
         $regApplicationForm = $this->createForm(new ApplicationType(), new Application());
         $regApplicationForm->add('submit', 'submit', array(
             'label' => 'Attempt to register',
@@ -25,37 +28,28 @@ class DefaultController extends Controller
         ));
 
 
-//        if($request->isMethod('post')) {
-//
-//            $regApplicationForm->handleRequest($request);
-//
-//            if ($regApplicationForm->isValid()) {
-//                // ... perform some action, such as saving the task to the database
-//
-//                /** @var Application $data */
-//                $data =$regApplicationForm->getData();
-//
-//                $data->setApplicationStatus(Application::STATUS_NEW);
-//                $data->setApplicationComments('');
-//                $data->setUploadedImage('');
-//
-//                $em = $this->getDoctrine()->getManager();
-//                $em->persist($data);
-//                $em->flush();
-//
-//                $this->get('session')->getFlashBag()
-//                    ->add('success', 'Your application has been submitted. Thanks.');
-//                return $this->redirect('/');
-//            } else {
-//                $this->get('session')->getFlashBag()
-//                    ->add('error', 'Your application has been submitted. Thanks.');
-//            }
-//        }
-
         // replace this example code with whatever you need
         return $this->render(
             'default/index.html.twig',
             array('form' => $regApplicationForm->createView())
+        );
+    }
+
+    /**
+     * @Route("/attended", name="attended")
+     */
+    public function attendedMembers(Request $request)
+    {
+        $applications = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Application')
+            ->findAll()
+            ;
+
+        return $this->render(
+            'default/attended.html.twig',
+            array(
+                'applications' => $applications
+            )
         );
     }
 
@@ -82,8 +76,6 @@ class DefaultController extends Controller
 
                 $data = $regApplicationForm->getData();
 
-                dump($data);
-
                 // $file stores the uploaded PDF file
                 /** @var UploadedFile $file */
                 $file = $data->getUploadedImage();
@@ -101,6 +93,8 @@ class DefaultController extends Controller
                 $this->getDoctrine()->getManager()->persist($data);
                 $this->getDoctrine()->getManager()->flush();
 
+                $this->resizeImage($data);
+
                 $this->get('session')->getFlashBag()
                     ->add('success', 'Your application has been submitted. Thanks.');
             } else {
@@ -110,5 +104,38 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/application.html.twig', array('form' => $regApplicationForm->createView()));
+    }
+
+
+    protected function resizeImage(Application $application)
+    {
+
+        $rootDir = $this->container
+            ->getParameter('kernel.root_dir')
+            .'/../web'
+        ;
+
+        $im = new \Imagick($rootDir  . $application->getUploadedImage());
+        $imageprops = $im->getImageGeometry();
+        $width = $imageprops['width'];
+        $height = $imageprops['height'];
+        if($width > $height) {
+            $newHeight = 120;
+            $newWidth = (120 / $height) * $width;
+        } else {
+            $newWidth = 120;
+            $newHeight = (120 / $width) * $height;
+        }
+
+        $im->resizeImage($newWidth,$newHeight, \Imagick::FILTER_LANCZOS, 0.9, true);
+        $im->cropImage (120,120,0,0);
+
+
+        $imageDir = $rootDir . '/uploads/applications';
+
+        $im->writeImage($imageDir . '/'.$application->getId().'.jpg');
+
+
+
     }
 }
